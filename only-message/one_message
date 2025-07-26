@@ -10,7 +10,7 @@ SENDER_EMAIL = "omwegajoseph01@gmail.com"
 SENDER_PASSWORD = "ghqtqjfroxecjeqf"
 
 
-RECIPIENTS = ["omwegajoseph01@gmail.com"]
+RECIPIENTS = ["omwegajoseph01@gmail.com"], ["alexelijah200@gmail.com"], ["o1otienokennedy@gmail.com"]
 
 # Reminder settings
 RENT_REMINDER_DAY = 26  # Day of the month to send reminder

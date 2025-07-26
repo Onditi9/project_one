@@ -3,53 +3,53 @@ import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# ======== CONFIGURATION ========
-EMAIL_ADDRESS = "omwegajoseph01@gmail.com"
-EMAIL_PASSWORD = "fioxrwymexppvvoq"
-TO_EMAIL = "omwegajoseph01@gmail.com"  
-force_send =True  # Set to True to force send the email regardless of the date
+# ========= CONFIGURATION VARIABLES =========
 
-# ======== DATE CHECKING ========
+# Your email credentials
+SENDER_EMAIL = "your_email@gmail.com"
+SENDER_PASSWORD = "ghqtqjfroxecjeqf"
+
+
+RECIPIENTS = ["your_email@gmail.com"] # 01otienokennedy@gmiail.com # alexelijah200@gmail.com
+
+# Reminder settings
+RENT_REMINDER_DAY = 26  # Day of the month to send reminder
+SUBJECT = "Rent Reminder"
+SENDER_NAME = "Rent Notifier Bot"
+
+# ========= CHECK DATE =========
+
 today = datetime.date.today()
 
-# Calculate last day of this month
-if today.month == 12:
-    last_day = datetime.date(today.year, 12, 31)
-else:
-    next_month = datetime.date(today.year, today.month + 1, 1)
-    last_day = next_month - datetime.timedelta(days=1)
+if today.day == RENT_REMINDER_DAY:
+    # Dynamic message body
+    body = f"""
+Hi,
 
-# Check if today is 7 days before end of the month
-reminder_day = last_day - datetime.timedelta(days=7)
-
-if today == reminder_day:
-    # ======== CREATE EMAIL ========
-    subject = "Rent Reminder"
-    body = f"""Hello,
-
-This is a friendly reminder that your rent is due soon — in 7 days (on {last_day.strftime('%B %d')}).
+This is a reminder that today is the 26th — your rent is due.
 
 Please make sure to pay your rent on time.
 
-Thanks!
-- Your Python Script 
+Thanks,  
+{SENDER_NAME}
 """
 
+    # ========= EMAIL CONSTRUCTION =========
     msg = MIMEMultipart()
-    msg['From'] = EMAIL_ADDRESS
-    msg['To'] = TO_EMAIL
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain'))
+    msg["From"] = SENDER_EMAIL
+    msg["To"] = ", ".join(RECIPIENTS)
+    msg["Subject"] = SUBJECT
+    msg.attach(MIMEText(body, "plain"))
 
+    # ========= EMAIL SENDING =========
     try:
-        # ======== SEND EMAIL ========
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
-        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        server.sendmail(EMAIL_ADDRESS, TO_EMAIL, msg.as_string())
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        server.sendmail(SENDER_EMAIL, RECIPIENTS, msg.as_string())
         server.quit()
         print("Rent reminder sent successfully.")
     except Exception as e:
-        print(f"Error sending email: {e}")
+        print(f"Failed to send email: {e}")
 else:
-    print(f"Today is {today}. Rent reminder will be sent on {reminder_day}.")
+    print(f"Today is {today}. Rent reminder will only be sent on the 26th.")
