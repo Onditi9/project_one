@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 
 # ======== CONFIGURATION ========
 EMAIL_ADDRESS = "omwegajoseph01@gmail.com"
-EMAIL_PASSWORD = "om:3ga3819$"
+EMAIL_PASSWORD = "fioxrwymexppvvoq"
 TO_EMAIL = "omwegajoseph01@gmail.com"  
 
 # ======== DATE CHECKING ========
