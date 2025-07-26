@@ -7,6 +7,7 @@ from email.mime.multipart import MIMEMultipart
 EMAIL_ADDRESS = "omwegajoseph01@gmail.com"
 EMAIL_PASSWORD = "fioxrwymexppvvoq"
 TO_EMAIL = "omwegajoseph01@gmail.com"  
+force_send =True  # Set to True to force send the email regardless of the date
 
 # ======== DATE CHECKING ========
 today = datetime.date.today()
